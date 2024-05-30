@@ -1,0 +1,4 @@
+tomcatPassword: px6J96nLX0
+service:
+  type: NodePort
+  nodePort: 30007

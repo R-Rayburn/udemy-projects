@@ -1,0 +1,43 @@
+apiVersion: v1
+entries:
+  firstchart:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-01-26T11:17:34.026447-06:00"
+    dependencies:
+    - import-values:
+      - child: primary.service
+        parent: mysqlService
+      name: mysql
+      repository: http://charts.bitnami.com/bitnami
+      tags:
+      - enabled
+      version: ^9.2.3
+    - name: apache
+      repository: http://charts.bitnami.com/bitnami
+      tags:
+      - enabled
+      version: ~9.2
+    description: A Helm chart for Kubernetes
+    digest: 848ce59caef014077f316c749ebdb6dcc81364a5d1df0b62145995efc8baca45
+    name: firstchart
+    type: application
+    urls:
+    - firstchart-0.1.0.tgz
+    version: 0.1.0
+  mytomcat:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-01-26T11:17:34.028496-06:00"
+    dependencies:
+    - name: tomcat
+      repository: http://charts.bitnami.com/bitnami
+      version: ~10.4
+    description: A Helm chart for Kubernetes
+    digest: 6f6cd74ad69a986c4d26555b7ad4ee3135a3484347e3cbdb606f0461f9d4f49c
+    name: mytomcat
+    type: application
+    urls:
+    - mytomcat-0.1.0.tgz
+    version: 0.1.0
+generated: "2023-01-26T11:17:34.019977-06:00"

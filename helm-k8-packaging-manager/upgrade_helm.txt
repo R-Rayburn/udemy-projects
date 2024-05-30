@@ -1,0 +1,3 @@
+helm upgrade --namespace default raydb bitnami/mysql --set auth.rootPassword=$ROOT_PASSWORD
+helm upgrade raydb bitnami/mysql --values values.yaml
+helm upgrade raydb bitnami/mysql --reuse-values

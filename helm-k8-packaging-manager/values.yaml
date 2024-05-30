@@ -1,0 +1,3 @@
+# file to pass in configs for helm installations
+auth:
+  rootPassword: "test1234"
