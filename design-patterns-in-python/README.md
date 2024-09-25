@@ -40,3 +40,26 @@
 - Builder provides an API for constructing an object step-by-step
 
 _When piecewise object construction is complicated, provide an API for doing it succinctly_
+### Summary
+- A builder is a separate component for building an object
+- Can either give builder an initializer or return it via a static function
+- To make builder fluent, return self in every method
+- Different facets of an object can be built with different builders working in tandem via a base class
+
+## Factories
+### Motivation
+- Object creation logic becomes too confoluted
+- Initializer is not descriptive
+  - name is always `__init__`
+  - cannot overload with same sets of arguments with different names
+  - can turn into 'optional parameter hell'
+- Wholesale object creation (non-pieccewise, unlike Builder) can be outsourced to
+  - a separate method (factory method)
+  - that may exist in a separate class (factory)
+  - can create hierarchy of factories with abstract factory
+- Factory: A component rewponsible solely for the wholesale (not piecewise) creation of objects.
+### Summary
+- A _factory method_ is a static method that creates objects
+- A factory is an entity that can take care of object creation
+- A factory can be external or reside in the object as an inner class
+- Hierarchies of factories can be used to create related objects.
