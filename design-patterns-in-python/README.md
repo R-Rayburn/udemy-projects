@@ -32,6 +32,7 @@
 - Solve a particular problem in a particular way.
 
 ## Builder Design Pattern
+_Builder_ | When piecewise object construction is complicated, provide an API for doing it succinctly
 ### Motivation
 - Some objects are simple and can be created in a single initializer call
 - Other objects require a lot of ceremony to create
@@ -39,7 +40,7 @@
 - Instead, opt for piecewise construction
 - Builder provides an API for constructing an object step-by-step
 
-_When piecewise object construction is complicated, provide an API for doing it succinctly_
+
 ### Summary
 - A builder is a separate component for building an object
 - Can either give builder an initializer or return it via a static function
@@ -47,6 +48,7 @@ _When piecewise object construction is complicated, provide an API for doing it 
 - Different facets of an object can be built with different builders working in tandem via a base class
 
 ## Factories
+_Factory_ | A component rewponsible solely for the wholesale (not piecewise) creation of objects.
 ### Motivation
 - Object creation logic becomes too confoluted
 - Initializer is not descriptive
@@ -57,9 +59,56 @@ _When piecewise object construction is complicated, provide an API for doing it 
   - a separate method (factory method)
   - that may exist in a separate class (factory)
   - can create hierarchy of factories with abstract factory
-- Factory: A component rewponsible solely for the wholesale (not piecewise) creation of objects.
 ### Summary
 - A _factory method_ is a static method that creates objects
 - A factory is an entity that can take care of object creation
 - A factory can be external or reside in the object as an inner class
 - Hierarchies of factories can be used to create related objects.
+
+## Prototype
+_Prototype_ | A partially or fully initialized object that you copy (clone) and make use of.
+### Motivation
+- Complicated objects (eg. cars) arent' designed from scratch
+  - They reiterate existing designs
+- An existing (partially or fully constructed) design is a Prototype
+- We make a copy (clone) the prototype and customize
+  - requires 'deep copy' support
+- We make the cloning convenient (e.g., via a Factory)
+
+
+### Summary
+- To implement a prototype, partially construct an object and store it somewhere
+- Deep copy the prototype
+- Customize the resulting instance
+- A factory provides a convenient API for using prototypes
+
+## Singleton
+_Singleton_ | A component which is instantiated only once.
+### Motiviation
+- For some components, it only makes sense to have one in the system
+  - Database repository
+  - Object factory
+- E.g., the initializer call is expensive
+  - We only do it once
+  - We provide everyone with the same instance
+- Want to prevent anyone creating additional copies
+- Need to take care of lazy instantiation
+### Summary
+- Different realizations of Singleton: custom allocation, decorator, metaclass
+- Laziness is easy, just initialize first request
+- Monostate variation
+- Testability issues
+  - Solved by crating mocks and injecting data
+
+## Adapter
+_Adapter_ | A construct which adapts an existing interface X to conform to the required interface Y.
+### Motivation
+- We have devices that require different interface requirements
+- We cannot modify our devices to support every possible interface
+- Thus we use an adapter to give us the interface we need from the interface we have
+
+### Summary
+- Implementing an Adapter is easy
+- Determine the API you have and the API you need
+- Create a component which aggregates (has a reference to) the adaptee
+- Intermediate representations can pile up: use caching and other optimizations.
