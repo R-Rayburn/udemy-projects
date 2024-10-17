@@ -84,7 +84,7 @@ _Prototype_ | A partially or fully initialized object that you copy (clone) and 
 
 ## Singleton
 _Singleton_ | A component which is instantiated only once.
-### Motiviation
+### Motivation
 - For some components, it only makes sense to have one in the system
   - Database repository
   - Object factory
@@ -112,3 +112,62 @@ _Adapter_ | A construct which adapts an existing interface X to conform to the r
 - Determine the API you have and the API you need
 - Create a component which aggregates (has a reference to) the adaptee
 - Intermediate representations can pile up: use caching and other optimizations.
+
+## Bridge
+_Bridge_ | A mechanism that decouples an interface (hierarchy) from an implementation (hierarchy).
+### Motivation
+- Bridge prevents a 'Cartesian product' complexity explosion
+- Eample:
+  - Base calss ThreadScheduler
+  - Can be preemptive or cooperative
+  - Can run on Windows or Unix
+  - End up wiht aa 2x2 scenario: WindowsPTS, UnixPTS, WindowsCTS, UnixCTS
+- Bridge pattern avoids the entity explosion
+
+#### Before
+ThreadScheduler <- PreemptiveThreadScheduler
+ThreadScheduler <- CooperativeThreadScheduler
+PreemptiveThreadScheduler <- WindowsPTS
+PreemptiveThreadScheduler <- UnixPTS
+CooperativeThreadScheduler <- WindowsCTS
+CooperativeThreadScheduler <- UnixCTS
+
+#### after
+IPlatformScheduler <- ThreadScheduler.platformScheduler
+IPlatformScheduler <- UnixScheduler
+IPlatformScheduler <- WindowsScheduler
+ThreadScheduler <- PreemptiveThreadScheduler
+ThreadScheduler <- CooperativeThreadScheduler
+
+### Summary
+- Decouple abstraction from implementation
+- Both can exist as hierarchies
+- A stronger form of encapsulation
+
+
+## Composite
+_Composite_ | A mechanism for treating individual (scalar) objects and compositions of objects in a uniform manner.
+### Motivation
+- Objects use other objects' properties/members through inheritance and composition
+- Composition lets up make compound objects
+  - E.g., a mathematical expression composed of simple expressions; or
+  - A grouping of shapes that consists of several shapes
+- Composite design pattern is used to treat both single (scalar) and composite objects uniformly
+  - I.e., Foo and Sequence (yielding Foo's) have common APIs
+### Summary
+- Objects can use other objects via inheritance/composition
+- Soome composed and singular objects need similar/identical behaviors
+- Composite design pattern lets us treat both types of objects uniformly
+- Python supports iteration with `__iter__` and the `Iterable` ABC
+- A single object can make itself iterable yileding self from `__iter__`
+
+## Decorator
+_Decorator_ | Facilitates the addition of behaviors to individual objects without inheriting from them.
+### Motivation
+- Want to augment an object with additional functionality/features
+- Do not want to rewrite or alter existing code (OCP)
+- Want to keep the new functionality separate (SRP)
+- Need to be able to interact with existing structures
+- Two options:
+  - inherit from required object (if possible)
+  - build a Decorator, which simply references the decorated object(s)
